@@ -1,0 +1,13 @@
+# Personal job-search data: never commit
+CLAUDE.md
+Applications/
+Templates/
+scripts/companies.json
+job_search_log.md
+Job Applications Tracker.html
+
+# Python / OS
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

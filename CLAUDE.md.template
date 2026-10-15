@@ -1,0 +1,127 @@
+# Project context: Job search — {Your Name}
+
+Read this before doing anything in this folder. It explains who this is for, what's verified
+true, how the folder system works, and how to handle new application requests consistently.
+
+Every skill in `skills/` reads this file as its **single source of truth** for facts about
+you. Fill it in with your own real, verifiable information before using the skills — the
+whole point of this system is that nothing in a resume or cover letter gets invented, and
+that discipline starts here.
+
+## Who this is for
+
+{Your name, degree(s) in progress or held, institution, location. What roles you're applying
+for (e.g. "AI Engineer, Machine Learning Engineer, Data Scientist, Working Student roles in
+Germany").}
+
+Contact: {email} · {phone}
+LinkedIn: {url}
+GitHub: {url}
+Portfolio: {url, if you have one}
+
+**Work status** (verify before ever changing this): {Your actual visa/work-authorization
+status. Be precise — this is a fact an AI assistant should never paraphrase loosely. If you're
+not sure how to phrase it, write it out fully rather than compressing it, and correct it
+yourself rather than letting a skill "helpfully" simplify it.}
+
+Languages: {List each language with an honest proficiency level (CEFR or similar). Don't let
+a skill imply higher fluency than you actually have to match a job posting's preference.}
+
+**Relocation:** {Are you willing to relocate? Anywhere, or within limits? Any conditions
+(e.g. remote roles are fine regardless, full-time on-site internships raise a separate
+scheduling/visa question)?}
+
+## Non-negotiable content rule
+
+**Never fabricate, exaggerate, or invent experience, metrics, skills, or claims.** Every fact
+below must be verified against your actual resume, real project repos/code, and original
+source material. If a job posting asks for a skill or experience not listed here, the skills
+in this system should not add it to look like a better fit — they should either skip it, or
+explicitly and honestly name the gap in the cover letter.
+
+## Verified facts — projects
+
+{For each real project: name, one-line description, your role if it was a team project (be
+explicit about what was specifically yours vs. shared), the actual stack/tools used, and any
+real, measured metrics. Don't include a metric you can't back up if asked about it in an
+interview.}
+
+## Verified skills
+
+{Group by category (ML/Data, Web/Full-Stack, Tools, Languages, etc.) — list only what you can
+actually speak to.}
+
+## Folder system
+
+```
+Templates/            ← master resume + cover letter source. Never sent directly.
+Applications/
+  application_index.csv          ← master tracking sheet, one row per application
+                                     columns: date,company,position,location,status,
+                                     resume_path,cover_letter_path,notes_path,posting_link
+  outreach_log.csv                ← real outreach actually sent (not drafts)
+  blacklist.md                    ← optional do-not-apply list, checked by job-fit-eval
+  YYYY-MM-DD_Company_Role/       ← one folder per application
+    <YourName>_Resume_<Company>.pdf   ← what actually gets uploaded
+    CoverLetter_<Company>.pdf          ← what actually gets uploaded
+    *.tex                                ← editable source, kept next to the PDF
+    job_posting.md                       ← the actual listing, saved verbatim
+    notes.md                             ← what was tailored/changed and why, + status
+scripts/                ← job-scan, set_status, pipeline_summary Python scripts
+job_search_log.md      ← running log of postings already surfaced, avoids duplicate reports
+```
+
+## Skills available (Claude Code)
+
+Installed at `~/.claude/skills/`, invocable directly or triggered automatically when the
+situation matches:
+
+| Skill | Use for |
+|---|---|
+| `job-fit-eval` | Score a posting against real verified skills, flag gaps honestly, recommend apply/skip. **Run this before tailoring anything.** |
+| `tailor-application` | Draft a tailored resume + cover letter for a specific posting. |
+| `company-research` | Structured research brief before a cover letter opener or an interview. |
+| `linkedin-outreach` | Find a contact + draft a short outreach message (draft-only, never sends). |
+| `follow-up-check` | Scan the tracker for applications overdue for a follow-up. |
+| `job-scan` | Zero-token scan of `scripts/companies.json`'s curated company list via public ATS APIs. |
+| `stop-slop` | Anti-AI-writing-pattern check, run on every cover letter and outreach draft. |
+
+None of these auto-submit anything. Every one stops at "draft" and hands control back.
+
+## Ethical rules
+
+- **Never submit an application without you reviewing it first.** Draft, tailor, compile —
+  you always click submit, never the assistant.
+- **Discourage low-fit applications.** If `job-fit-eval` scores a posting below 3.0/5, say so
+  plainly and explain why, rather than tailoring an application anyway.
+- **Quality over quantity.** A handful of well-targeted applications beats a high-volume blast.
+
+## Canonical application states
+
+Source of truth: `scripts/states.py`. Use `scripts/set_status.py` to change a row's status —
+never hand-edit `application_index.csv` for status changes.
+
+| State | When to use |
+|---|---|
+| `Evaluated` | `job-fit-eval` has scored it, not yet drafted |
+| `Drafted` | Resume/cover letter tailored, not yet sent |
+| `Applied` | Sent — `set_status.py` asks for explicit confirmation before allowing this |
+| `Responded` | Company replied |
+| `Interview` | In interview process |
+| `Offer` | Offer received |
+| `Rejected` | Rejected by company |
+| `Discarded` | You decided not to pursue further |
+| `SKIP` | Evaluated but not worth applying |
+
+## Style lessons (fill in as you go)
+
+{This section is where you accumulate standing instructions as you notice patterns — e.g.
+"always run cover letters through stop-slop before compiling," "default to English unless a
+posting requires fluent German," "always attribute team projects correctly." Keep it updated;
+this is what keeps every future application consistent with the last one.}
+
+## Current known state
+
+{A running note of where things stand — what's drafted, what templates need updating, what's
+stale. Update this as you go so a fresh Claude session (or a future you) can pick up context
+quickly.}

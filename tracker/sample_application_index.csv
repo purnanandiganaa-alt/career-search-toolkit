@@ -1,0 +1,4 @@
+date,company,position,location,status,resume_path,cover_letter_path,notes_path,posting_link
+2026-08-01,Example Robotics GmbH,Machine Learning Intern,Berlin,Applied,Applications/2026-08-01_ExampleRobotics_MLIntern/Resume_ExampleRobotics.pdf,Applications/2026-08-01_ExampleRobotics_MLIntern/CoverLetter_ExampleRobotics.pdf,Applications/2026-08-01_ExampleRobotics_MLIntern/notes.md,https://example.com/careers/ml-intern
+2026-08-05,Sample Data Co,Data Scientist Working Student,Munich,Drafted,Applications/2026-08-05_SampleDataCo_DataScientist/Resume_SampleDataCo.pdf,Applications/2026-08-05_SampleDataCo_DataScientist/CoverLetter_SampleDataCo.pdf,Applications/2026-08-05_SampleDataCo_DataScientist/notes.md,https://example.com/careers/data-scientist
+2026-08-10,Placeholder AI Labs,Research Assistant (HiWi),Remote,SKIP,,,,https://example.com/careers/research-assistant

@@ -1,0 +1,27 @@
+{
+  "_comment": "Curated list of companies with verified public ATS APIs, relevant to your target roles. Every slug should be tested live before being added -- see job-scan/SKILL.md for how to verify a new one. Copy this file to companies.json and replace the examples below with your own list.",
+  "companies": [
+    { "name": "Example Company One", "provider": "greenhouse", "slug": "example-one" },
+    { "name": "Example Company Two", "provider": "ashby", "slug": "example-two" }
+  ],
+  "title_filter": {
+    "_comment": "A posting must match at least one 'domain' term (keeps the scan on-topic instead of matching any junior/intern role regardless of department) AND must not match any 'negative' term. Matched against job title only (see title_matches() in job_scan.py). Edit both lists to match your actual target roles.",
+    "domain": [
+      "machine learning", "ml engineer", "data scien", "ai engineer",
+      "artificial intelligence", "deep learning", "software engineer",
+      "backend engineer", "data engineer"
+    ],
+    "negative": [
+      "sales", "account executive", "marketing", "recruiter",
+      "customer success", "legal counsel", "finance", "accounting",
+      "senior", "sr ", "sr. ", "staff", "principal", "lead ", "director",
+      "vp ", "head of"
+    ]
+  },
+  "location_filter": {
+    "_comment": "A posting must match at least one of these in its location string to be kept -- keeps the scan to roles you can actually take given your own work-authorization situation. Case-insensitive substring match. Replace with your own country/city list.",
+    "include": [
+      "remote", "remote europe", "eu remote"
+    ]
+  }
+}
